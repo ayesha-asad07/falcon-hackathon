@@ -48,7 +48,7 @@ def preprocess_text(text):
 st.title("Medi Scape Dashboard")
 
 # --- Session State Initialization ---
-if 'if 'disease_model' not in st.session_state:
+if 'disease_model' not in st.session_state:
     try:
         model_path = 'FINAL_MODEL.keras'
         print(f"Attempting to load disease model from: {model_path}")

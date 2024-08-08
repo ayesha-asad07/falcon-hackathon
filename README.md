@@ -1,6 +1,6 @@
-# Healthcare AI System
+# Medi Scape
 
-A system leveraging AI for remote healthcare, including features for AI chatbot diagnosis, drug identification, doctors handwriting identification, and disease detection from chest X-ray images.
+Medi Scape is an AI-powered healthcare application designed to streamline the process of understanding and managing medical information.  It leverages advanced AI models to provide features such as prescription analysis, disease detection from chest X-rays, and symptom-based diagnosis assistance.
 
 ## Demo
 

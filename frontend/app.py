@@ -252,11 +252,11 @@ else:
         st.write(llm_response)
 
     if page == "Home":
-        st.markdown("## Project Overview")
-        st.write("This healthcare application allows users to upload prescription images, which are then processed to extract and analyze the text. The key components include image processing, text recognition, and context understanding using machine learning models.")
+        st.markdown("## Welcome to Medi Scape")
+        st.write("Medi Scape is an AI-powered healthcare application designed to streamline the process of understanding and managing medical information.  It leverages advanced AI models to provide features such as prescription analysis, disease detection from chest X-rays, and symptom-based diagnosis assistance.")
 
         st.markdown("## Features")
-        st.write("This application provides various AI-powered tools for remote healthcare, including:")
+        st.write("Medi Scape provides various AI-powered tools for remote healthcare, including:")
         features = [
             "**AI Chatbot Diagnosis:** Interact with an AI chatbot for preliminary diagnosis and medical information.",
             "**Drug Identification:** Upload a prescription image to identify medications and access relevant details.",

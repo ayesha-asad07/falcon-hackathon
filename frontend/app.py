@@ -56,7 +56,7 @@ if 'disease_model' not in st.session_state:
         st.session_state.disease_model = tf.keras.models.load_model(model_path)
         print("Disease model loaded successfully!")
     except FileNotFoundError:
-        st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.keras' is in the same directory as this app.")
+        st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.zip' is in the same directory as this app.")
         st.session_state.disease_model = None
 
 # Load the vectorizer 
@@ -102,9 +102,9 @@ if 'model_llm' not in st.session_state:
 
 # Load the disease classification model
 try:
-    disease_model = tf.keras.models.load_model('FINAL_MODEL.keras')
+    disease_model = tf.keras.models.load_model('FINAL_MODEL.zip')
 except FileNotFoundError:
-    st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.keras' is in the same directory as this app.")
+    st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.zip' is in the same directory as this app.")
     disease_model = None
 
 # Sidebar Navigation

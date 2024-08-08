@@ -50,7 +50,7 @@ st.title("Medi Scape Dashboard")
 # --- Session State Initialization ---
 if 'disease_model' not in st.session_state:
     try:
-        model_path = 'FINAL_MODEL.keras'
+        model_path = 'FINAL_MODEL.zip'
         print(f"Attempting to load disease model from: {model_path}")
         print(f"Model file exists: {os.path.exists(model_path)}") 
         st.session_state.disease_model = tf.keras.models.load_model(model_path)

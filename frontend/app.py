@@ -50,29 +50,36 @@ st.title("Medi Scape Dashboard")
 # --- Session State Initialization ---
 if 'disease_model' not in st.session_state:
     try:
-        st.session_state.disease_model = tf.keras.models.load_model('FINAL_MODEL.keras')
+        model_path = 'FINAL_MODEL.zip'
+        print(f"Attempting to load disease model from: {model_path}")
+        print(f"Model file exists: {os.path.exists(model_path)}") 
+        st.session_state.disease_model = tf.keras.models.load_model(model_path)
+        print("Disease model loaded successfully!")
     except FileNotFoundError:
-        st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.keras' is in the same directory as this app.")
+        st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.zip' is in the same directory as this app.")
         st.session_state.disease_model = None
 
-# --- Load the vectorizer regardless of the model_llm's state ---
+# Load the vectorizer 
 if 'vectorizer' not in st.session_state:
     try:
-        # Use a relative path assuming vectorizer.pkl is in the same directory
         vectorizer_path = "vectorizer.pkl" 
+        print(f"Attempting to load vectorizer from: {vectorizer_path}")
+        print(f"Vectorizer file exists: {os.path.exists(vectorizer_path)}")
         st.session_state.vectorizer = pd.read_pickle(vectorizer_path)
+        print("Vectorizer loaded successfully!")
     except FileNotFoundError:
         st.error("Vectorizer file not found. Please ensure 'vectorizer.pkl' is in the same directory as this app.")
         st.session_state.vectorizer = None
 
-   
-
 if 'model_llm' not in st.session_state:
-    # --- Code from LLMs/LLMs_chatbot.ipynb ---
-    # Load pre-trained model and vectorizer (replace with your actual file paths)
+    # --- Load pre-trained model and vectorizer ---
     st.session_state.model_llm = LogisticRegression()
     try:
-        st.session_state.model_llm = pd.read_pickle("logistic_regression_model.pkl")  
+        llm_model_path = "logistic_regression_model.pkl"
+        print(f"Attempting to load LLM model from: {llm_model_path}")
+        print(f"LLM Model file exists: {os.path.exists(llm_model_path)}")
+        st.session_state.model_llm = pd.read_pickle(llm_model_path)  
+        print("LLM model loaded successfully!")
     except FileNotFoundError:
         st.error("LLM model file not found. Please ensure 'logistic_regression_model.pkl' is in the same directory.")
         st.session_state.model_llm = None
@@ -95,9 +102,9 @@ if 'model_llm' not in st.session_state:
 
 # Load the disease classification model
 try:
-    disease_model = tf.keras.models.load_model('FINAL_MODEL.keras')
+    disease_model = tf.keras.models.load_model('FINAL_MODEL.zip')
 except FileNotFoundError:
-    st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.keras' is in the same directory as this app.")
+    st.error("Disease classification model not found. Please ensure 'FINAL_MODEL.zip' is in the same directory as this app.")
     disease_model = None
 
 # Sidebar Navigation
@@ -245,11 +252,11 @@ else:
         st.write(llm_response)
 
     if page == "Home":
-        st.markdown("## Project Overview")
-        st.write("This healthcare application allows users to upload prescription images, which are then processed to extract and analyze the text. The key components include image processing, text recognition, and context understanding using machine learning models.")
+        st.markdown("## Welcome to Medi Scape")
+        st.write("Medi Scape is an AI-powered healthcare application designed to streamline the process of understanding and managing medical information.  It leverages advanced AI models to provide features such as prescription analysis, disease detection from chest X-rays, and symptom-based diagnosis assistance.")
 
         st.markdown("## Features")
-        st.write("This application provides various AI-powered tools for remote healthcare, including:")
+        st.write("Medi Scape provides various AI-powered tools for remote healthcare, including:")
         features = [
             "**AI Chatbot Diagnosis:** Interact with an AI chatbot for preliminary diagnosis and medical information.",
             "**Drug Identification:** Upload a prescription image to identify medications and access relevant details.",
